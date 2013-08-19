@@ -1,31 +1,29 @@
-arButtons['uploadcare'] = [ 'BXButton', {
-    id : 'uploadcare',
-    iconkit : 'uploadcare.png',
-    name : 'uploadcare',
-    title : 'Uploadcare',
-    handler : function() {
-        this.pMainObj.OpenEditorDialog('dd_uploadcare', null, 800);
-    }
-} ];
+arButtons['uploadcare'] = ['BXButton', {
+	id : 'uploadcare',
+	iconkit : 'uploadcare.png',
+	name : 'uploadcare',
+	title : 'Uploadcare',
+	handler : function() {
+		var editor = this;
+		var dialog = uploadcare.openDialog().done(function(file) {
+			file.done(function(fileInfo) {
+				_file_id = fileInfo.uuid;
+				url = fileInfo.cdnUrl;
+				dialog_path = '/bitrix/admin/uploadcare_admin.php?file_id=' + _file_id;				
+			   	BX.ajax.get(dialog_path, false, function() {
+					if (fileInfo.isImage) {
+						editor.pMainObj.insertHTML('<img src="' + url + '" />');
+					} else {
+						editor.pMainObj.insertHTML('<a href="' + url + '">' + fileInfo.name + '</a>');
+					}
+			   	});
+			});
+		});
+	}
+}];
 
 if (arGlobalToolbar == undefined) {
-    arToolbars['standart'][1].unshift(arButtons['uploadcare']);
+	arToolbars['standart'][1].unshift(arButtons['uploadcare']);
 } else {
-    arGlobalToolbar.unshift(arButtons['uploadcare']);
-}
-
-arEditorFastDialogs['dd_uploadcare'] = function(pObj) {
-    var __obj = this;
-
-    this.OnClose = function() {
-        window.oBXEditorDialog.Close();
-    };
-
-    return {
-        title : 'Uploadcare',
-        innerHTML : '<iframe width="100%" height="100%" src="/bitrix/tools/uploadcare/uploadcare.php" border="0" frameborder="0" style="overflow-y: hidden; overflow-x: scroll;"></iframe>',
-        OnLoad : function() {
-            window.oBXEditorDialog.SetButtons([window.oBXEditorDialog.btnClose ]);
-        }
-    };
+	arGlobalToolbar.unshift(arButtons['uploadcare']);
 }

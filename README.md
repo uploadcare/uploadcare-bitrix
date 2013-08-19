@@ -10,6 +10,8 @@ It's based on a [uploadcare-php][4] library.
 - PHP 5.2+
 - php-curl
 
+# ENG
+
 ## Install 
 
 Clone module from github inside your project:
@@ -24,17 +26,52 @@ Set your public and secret keys and save settings form.
 
 ## Usage
 
+### HTML editor
+
 Add or edit any html-block with html editor.
 
-Press Uploadcare icon. You will see, that new window "Uploadcare".
+Press Uploadcare icon. You will see "Uploadcare" widget.
 
-Upload a file using widget and press "Store File". 
+Upload a file using widget and crop it as you like.
 
-When the file is stored a new page with file operations will be available.
+### User Property.
 
-Apply operations and press "Insert". The image will be inserted in your post.
+There's and "Uploadcare" property you can add to any object.
 
-[More information on file operations can be found here][2]
+You can add this field at "Information Block" setting or add it using "User field".
+
+# RU
+
+## Установка
+
+Установите модуль в свой проект: 
+
+	git clone git://github.com/uploadcare/uploadcare-bitrix.git bitrix/modules/uploadcare --recursive
+	
+Установите модуль в разделе "Настройка продукта" -> "Модули"
+
+Пройдите в раздел "Настройка продукта" -> "Настройки модулей" -> "Uploadcare".
+
+Установите значения "Public key" и "Secret key".
+
+## Как пользоваться
+
+При редактировании, в визуальном редакторе появится иконка "Uploadcare".
+
+Нажав на неё, вы увидите виджет для загрузки файлов и изображений.
+
+Загрузите файл или изображение, установите видимые границы.
+
+После нажатия на кнопку "Save" изображение или ссылка на файл будут вставлены 
+в визуальный редактор.
+
+### Пользовательские поля
+
+Модуль предоставляет возможность создавать пользовательские поля типа "Uploadcare".
+
+Вы можете создать их в разделе "Пользовательские поля".
+
+Поле так же доступно при создании или редактировании свойств информационных блоков.
 
 [1]: https://uploadcare.com/
 [2]: https://uploadcare.com/documentation/reference/basic/cdn.html
