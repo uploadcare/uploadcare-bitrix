@@ -17,6 +17,7 @@ class CUserTypeUploadcare {
 			'GetPropertyFieldHtml' => array('CUserTypeUploadcare', 'GetPropertyFieldHtml'), 
 			'GetAdminListViewHTML' => array('CUserTypeUploadcare', 'GetAdminListViewHTML'),
 			'ConvertToDB'          => array('CUserTypeUploadcare', 'ConvertToDB'),
+			'ConvertFromDB'		   => array('CUserTypeUploadcare', 'ConvertFromDB'),
 		);
 	}
 
@@ -37,6 +38,9 @@ class CUserTypeUploadcare {
 	function ConvertToDB($arProperty, $value)
 	{
 		$value = $value['VALUE'];
+		if (!$value) {
+			return array('VALUE' => '');
+		}
 		if (strpos($value, 'ucarecdn.com')) {
 			$parts = parse_url($value);
 			$path = $parts['path'];
@@ -52,6 +56,24 @@ class CUserTypeUploadcare {
 		$file->store();	
 		$arResult = array('VALUE' => $value);
 		return $arResult;
+	}
+	
+	function ConvertFromDB($arProperty, $value)
+	{
+		return array('VALUE' => self::GetValue($value['VALUE']));
+	}	
+
+	function GetValue($value) 
+	{
+		if (!$value) {
+			return '';
+		}
+		if (strpos($value, 'ucarecdn.com')) {
+			return $value;
+		} else {
+			return 'https://ucarecdn.com/'.$value.'/';
+		}
+		
 	}
 
 	function getViewHTML($name, $value) {
