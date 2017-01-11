@@ -40,6 +40,20 @@ There's and "Uploadcare" property you can add to any object.
 
 You can add this field at "Information Block" setting or add it using "User field".
 
+## Contributors
+
+- [@grayhound](https://github.com/grayhound)
+
+## Security issues
+
+If you think you ran into something in Uploadcare libraries
+which might have security implications, please hit us up at
+[bugbounty@uploadcare.com](mailto:bugbounty@uploadcare.com)
+or Hackerone.
+
+We'll contact you personally in a short time to fix an issue
+through co-op and prior to any public disclosure.
+
 # RU
 
 ## Установка
